@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Echo Design Beast</title>
+  <title>Echo Music UI</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,12 +19,18 @@
     <h1 id="home-section">Welcome to the Echo Experience</h1>
 
     <section class="grid" id="grid-section">
-      <div class="card"><img src="https://picsum.photos/300/300?random=1"></div>
-      <div class="card"><img src="https://picsum.photos/300/300?random=2"></div>
-      <div class="card"><img src="https://picsum.photos/300/300?random=3"></div>
-      <div class="card"><img src="https://picsum.photos/300/300?random=4"></div>
-      <div class="card"><img src="https://picsum.photos/300/300?random=5"></div>
-      <div class="card"><img src="https://picsum.photos/300/300?random=6"></div>
+      <div class="card" data-song="song1.mp3" data-title="Dreamscape">
+        <img src="https://picsum.photos/300/300?random=1" alt="Song Cover">
+        <div class="overlay"><span>Dreamscape</span></div>
+      </div>
+      <div class="card" data-song="song2.mp3" data-title="Neon Lights">
+        <img src="https://picsum.photos/300/300?random=2" alt="Song Cover">
+        <div class="overlay"><span>Neon Lights</span></div>
+      </div>
+      <div class="card" data-song="song3.mp3" data-title="Galactic Ride">
+        <img src="https://picsum.photos/300/300?random=3" alt="Song Cover">
+        <div class="overlay"><span>Galactic Ride</span></div>
+      </div>
     </section>
   </main>
 </div>
@@ -39,6 +45,27 @@
   <div class="search-container">
     <input type="text" placeholder="Search..." id="search-input">
     <button id="search-close">&times;</button>
+  </div>
+</div>
+
+<!-- Card Detail Modal -->
+<div id="card-modal">
+  <div class="card-modal-content">
+    <button id="card-close">&times;</button>
+    <img id="card-modal-img" src="" alt="Card Image">
+    <h2 id="card-title">Card Title</h2>
+    <p id="card-description">This is a placeholder description for the card.</p>
+  </div>
+</div>
+
+<!-- Mini Audio Player -->
+<div id="mini-player">
+  <div class="player-info">
+    <span id="player-song">No song playing</span>
+  </div>
+  <div class="player-controls">
+    <button id="play-pause">&#9658;</button>
+    <input type="range" id="player-progress" value="0" min="0" max="100">
   </div>
 </div>
 
