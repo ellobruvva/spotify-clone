@@ -1,0 +1,84 @@
+:root {
+  --bg: #0b0b0f;
+  --card: #12121a;
+  --purple-main: #7c6cff;
+  --purple-deep: #3b2f8f;
+  --text-main: #f2f2f7;
+  --text-muted: #a1a1b3;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-main);
+}
+
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  padding: 32px;
+  background: rgba(255,255,255,0.02);
+}
+
+.logo {
+  color: var(--purple-main);
+  margin-bottom: 40px;
+}
+
+nav a {
+  display: block;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--text-main);
+}
+
+.main {
+  flex: 1;
+  padding: 40px;
+}
+
+.featured {
+  background: var(--card);
+  border-radius: 20px;
+  padding: 40px;
+  margin: 40px 0;
+  box-shadow: 0 10px 40px rgba(124,108,255,0.15);
+  transition: transform 0.4s ease;
+}
+
+.featured:hover {
+  transform: translateY(-4px);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.card {
+  height: 180px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--purple-deep), var(--card));
+  transition: transform 0.4s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+}
