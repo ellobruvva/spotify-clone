@@ -9,28 +9,6 @@ buttons.forEach(btn => {
   });
 });
 
-window.addEventListener('scroll', () => {
-  const sections = ['home-section','grid-section'];
-  let scrollPos = window.scrollY + 100;
-  sections.forEach(id => {
-    const section = document.getElementById(id);
-    const link = document.querySelector(`.sidebar-btn[href="#${id}"]`);
-    if(section.offsetTop <= scrollPos && section.offsetTop + section.offsetHeight > scrollPos){
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
-  });
-});
-
-// Search modal
-const searchBtn = document.getElementById("search-btn");
-const searchModal = document.getElementById("search-modal");
-const searchClose = document.getElementById("search-close");
-searchBtn.addEventListener("click",()=>{searchModal.classList.add("active");document.getElementById("search-input").focus();});
-searchClose.addEventListener("click",()=>searchModal.classList.remove("active"));
-document.addEventListener("keydown",(e)=>{if(e.key==="Escape")searchModal.classList.remove("active");});
-
 // Floating particles
 const canvas = document.getElementById("particle-canvas");
 const ctx = canvas.getContext("2d");
@@ -42,44 +20,52 @@ for(let i=0;i<particleCount;i++){particles.push(new Particle());}
 function animateParticles(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{p.update();p.draw();});requestAnimationFrame(animateParticles);}
 animateParticles();
 
-// Cards + hover overlay + audio
-const cards = document.querySelectorAll(".card");
-let audio = new Audio();
-const cardModal = document.getElementById("card-modal");
-const cardClose = document.getElementById("card-close");
-const cardModalImg = document.getElementById("card-modal-img");
-const cardTitle = document.getElementById("card-title");
-const cardDesc = document.getElementById("card-description");
+// Sample songs (replace with real mp3 URLs if you want)
+const sampleSongs = [
+  {title:"Dreamscape", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", cover:"https://picsum.photos/300/300?random=1"},
+  {title:"Neon Lights", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", cover:"https://picsum.photos/300/300?random=2"},
+  {title:"Galactic Ride", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3", cover:"https://picsum.photos/300/300?random=3"},
+  {title:"Cosmic Drift", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3", cover:"https://picsum.photos/300/300?random=4"},
+  {title:"Electric Pulse", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3", cover:"https://picsum.photos/300/300?random=5"},
+  {title:"Midnight Wave", url:"https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3", cover:"https://picsum.photos/300/300?random=6"},
+];
 
-cards.forEach((card,index)=>{
-  card.addEventListener("click",(e)=>{
-    const songSrc = card.dataset.song;
-    const songTitle = card.dataset.title;
-    // Play audio
-    audio.src=songSrc; audio.play();
-    // Update mini player
-    playerSong.textContent=songTitle; playPauseBtn.textContent="❚❚"; activatePlayer();
-    // Optional: open card modal
-    cardModalImg.src=card.querySelector("img").src; cardTitle.textContent=songTitle;
-    cardDesc.textContent=`This is a detail view for ${songTitle}.`; cardModal.classList.add("active");
-  });
-});
-
-cardClose.addEventListener("click",()=>cardModal.classList.remove("active"));
-document.addEventListener("keydown",e=>{if(e.key==="Escape")cardModal.classList.remove("active");});
-
-// Mini player
+// Populate grid
+const grid = document.getElementById('grid-section');
+const audio = new Audio();
 const miniPlayer=document.getElementById("mini-player");
 const playerSong=document.getElementById("player-song");
 const playPauseBtn=document.getElementById("play-pause");
 const playerProgress=document.getElementById("player-progress");
 
 function activatePlayer(){miniPlayer.classList.add("active");}
-function deactivatePlayer(){if(audio.paused && !audio.src){miniPlayer.classList.remove("active");}}
 
+function populateGrid(filter="") {
+  grid.innerHTML="";
+  sampleSongs.filter(s=>s.title.toLowerCase().includes(filter.toLowerCase())).forEach(song=>{
+    const card=document.createElement("div"); card.classList.add("card");
+    card.dataset.song=song.url; card.dataset.title=song.title;
+    const img=document.createElement("img"); img.src=song.cover; card.appendChild(img);
+    const overlay=document.createElement("div"); overlay.classList.add("overlay");
+    overlay.innerHTML=`<span>${song.title}</span>`; card.appendChild(overlay);
+    card.addEventListener("click",()=>{
+      audio.src=song.url; audio.play();
+      playerSong.textContent=song.title; playPauseBtn.textContent="❚❚"; activatePlayer();
+    });
+    grid.appendChild(card);
+  });
+}
+
+populateGrid();
+
+// Search input filter
+const searchInput = document.getElementById("search-input-main");
+searchInput.addEventListener("input",()=>populateGrid(searchInput.value));
+
+// Mini player controls
 playPauseBtn.addEventListener("click",()=>{
-  if(audio.paused){audio.play();playPauseBtn.textContent="❚❚";activatePlayer();}
-  else{audio.pause();playPauseBtn.textContent="▶";}
+  if(audio.paused){audio.play(); playPauseBtn.textContent="❚❚"; activatePlayer();}
+  else{audio.pause(); playPauseBtn.textContent="▶";}
 });
 
 audio.addEventListener("timeupdate",()=>{
