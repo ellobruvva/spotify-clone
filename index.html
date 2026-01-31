@@ -12,18 +12,11 @@
     <h2 class="logo">ECHO</h2>
     <nav>
       <a href="#home-section" class="sidebar-btn active">Home</a>
-      <a href="#featured-section" class="sidebar-btn">Featured</a>
-      <a href="#grid-section" class="sidebar-btn">Grid</a>
     </nav>
   </aside>
 
   <main class="main">
     <h1 id="home-section">Welcome to the Echo Experience</h1>
-
-    <div class="featured" id="featured-section">
-      <p>Featured Highlight</p>
-      <h2>Neon Dreamscape</h2>
-    </div>
 
     <section class="grid" id="grid-section">
       <div class="card"><img src="https://picsum.photos/300/300?random=1"></div>
@@ -36,7 +29,20 @@
   </main>
 </div>
 
-<!-- Floating particles container -->
+<!-- Bottom-left circular search button -->
+<button id="search-btn">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+</button>
+
+<!-- Floating search modal -->
+<div id="search-modal">
+  <div class="search-container">
+    <input type="text" placeholder="Search..." id="search-input">
+    <button id="search-close">&times;</button>
+  </div>
+</div>
+
+<!-- Background particles -->
 <canvas id="particle-canvas"></canvas>
 
 <script src="app.js"></script>
