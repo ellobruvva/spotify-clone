@@ -1,14 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Spotify App</title>
+  <meta charset="UTF-8" />
+  <title>Echo</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Spotify Clone</h1>
-  <button onclick="login()">Login with Spotify</button>
 
-  <pre id="output"></pre>
+<div class="app">
+  <aside class="sidebar">
+    <h2 class="logo">Echo</h2>
+    <nav>
+      <a class="active">Home</a>
+      <a>Search</a>
+      <a>Library</a>
+    </nav>
+  </aside>
 
-  <script src="app.js"></script>
+  <main class="main">
+    <h1>Good evening</h1>
+
+    <div class="featured">
+      <p>Now playing</p>
+      <h2>Midnight Drive</h2>
+    </div>
+
+    <section class="grid">
+      <div class="card"></div>
+      <div class="card"></div>
+      <div class="card"></div>
+    </section>
+  </main>
+</div>
+
 </body>
 </html>
