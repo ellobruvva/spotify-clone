@@ -1,4 +1,4 @@
-// Smooth scroll for sidebar buttons
+// Smooth scroll for sidebar button
 const buttons = document.querySelectorAll('.sidebar-btn');
 buttons.forEach(btn => {
   btn.addEventListener('click', (e) => {
@@ -11,7 +11,7 @@ buttons.forEach(btn => {
 
 // Highlight active sidebar button on scroll
 window.addEventListener('scroll', () => {
-  const sections = ['home-section','featured-section','grid-section'];
+  const sections = ['home-section','grid-section'];
   let scrollPos = window.scrollY + 100;
   sections.forEach(id => {
     const section = document.getElementById(id);
@@ -22,6 +22,26 @@ window.addEventListener('scroll', () => {
       link.classList.remove('active');
     }
   });
+});
+
+// Search button toggle
+const searchBtn = document.getElementById("search-btn");
+const searchModal = document.getElementById("search-modal");
+const searchClose = document.getElementById("search-close");
+
+searchBtn.addEventListener("click", () => {
+  searchModal.classList.add("active");
+  document.getElementById("search-input").focus();
+});
+
+searchClose.addEventListener("click", () => {
+  searchModal.classList.remove("active");
+});
+
+document.addEventListener("keydown", (e) => {
+  if(e.key === "Escape") {
+    searchModal.classList.remove("active");
+  }
 });
 
 // Floating particles
@@ -50,6 +70,6 @@ for(let i=0;i<particleCount;i++){particles.push(new Particle());}
 function animateParticles(){ ctx.clearRect(0,0,canvas.width,canvas.height); particles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animateParticles);}
 animateParticles();
 
-// Optional: micro card rotation motion
+// Micro card rotation motion
 const cards = document.querySelectorAll(".card");
 setInterval(()=>{ cards.forEach(c=>{ const angle=(Math.random()*2-1)+"deg"; c.style.transform += ` rotate(${angle})`; }); },3000);
