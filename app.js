@@ -75,4 +75,19 @@ const playPauseBtn=document.getElementById("play-pause");
 const playerProgress=document.getElementById("player-progress");
 
 function activatePlayer(){miniPlayer.classList.add("active");}
-function deactivatePlayer(){if(audio.paused && !audio.src){miniPlayer.classList.remove
+function deactivatePlayer(){if(audio.paused && !audio.src){miniPlayer.classList.remove("active");}}
+
+playPauseBtn.addEventListener("click",()=>{
+  if(audio.paused){audio.play();playPauseBtn.textContent="❚❚";activatePlayer();}
+  else{audio.pause();playPauseBtn.textContent="▶";}
+});
+
+audio.addEventListener("timeupdate",()=>{
+  if(audio.duration){playerProgress.value=(audio.currentTime/audio.duration)*100;}
+});
+
+playerProgress.addEventListener("input",()=>{
+  if(audio.duration){audio.currentTime=(playerProgress.value/100)*audio.duration;}
+});
+
+audio.addEventListener("ended",()=>{playPauseBtn.textContent="▶";});
