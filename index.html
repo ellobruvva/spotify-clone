@@ -1,51 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Echo</title>
+  <meta charset="UTF-8">
+  <title>Echo Design Beast</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="app">
   <aside class="sidebar">
-    <h2 class="logo">Echo</h2>
+    <h2 class="logo">ECHO</h2>
     <nav>
       <a class="active">Home</a>
-      <a>Search</a>
-      <a>Library</a>
+      <a>Explore</a>
+      <a>Collections</a>
     </nav>
   </aside>
 
   <main class="main">
-    <h1>Good evening</h1>
+    <h1>Welcome to the Echo Experience</h1>
 
     <div class="featured">
-      <p>Now playing</p>
-      <h2>Midnight Drive</h2>
+      <p>Featured Highlight</p>
+      <h2>Neon Dreamscape</h2>
     </div>
 
     <section class="grid">
-      <div class="card"></div>
-      <div class="card"></div>
-      <div class="card"></div>
+      <div class="card"><img src="https://picsum.photos/300/300?random=1"></div>
+      <div class="card"><img src="https://picsum.photos/300/300?random=2"></div>
+      <div class="card"><img src="https://picsum.photos/300/300?random=3"></div>
+      <div class="card"><img src="https://picsum.photos/300/300?random=4"></div>
+      <div class="card"><img src="https://picsum.photos/300/300?random=5"></div>
+      <div class="card"><img src="https://picsum.photos/300/300?random=6"></div>
     </section>
   </main>
 </div>
 
-<!-- Now Playing Bar -->
-<div class="now-playing">
-  <img src="https://via.placeholder.com/50" alt="Album Art" class="np-album">
-  <div class="np-info">
-    <p class="np-song">Midnight Drive</p>
-    <p class="np-artist">Echo Beats</p>
-  </div>
-  <div class="np-controls">
-    <button>&lt;&lt;</button>
-    <button>▶</button>
-    <button>&gt;&gt;</button>
-  </div>
-</div>
+<!-- Floating particles container -->
+<canvas id="particle-canvas"></canvas>
 
 <script src="app.js"></script>
 </body>
