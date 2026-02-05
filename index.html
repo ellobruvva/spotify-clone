@@ -2,44 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Echo Music UI</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Music App</title>
 </head>
 <body>
 
-<div class="app">
-  <aside class="sidebar">
-    <h2 class="logo">ECHO</h2>
-    <nav>
-      <a href="#home-section" class="sidebar-btn active">Home</a>
-    </nav>
-  </aside>
+<h1 id="welcome"></h1>
+<button id="logout">Logout</button>
 
-  <main class="main">
-    <h1 id="home-section">Welcome to the Echo Experience</h1>
+<script src="js/auth.js"></script>
+<script>
+  requireAuth();
 
-    <input type="text" id="search-input-main" placeholder="Search songs..." class="search-main">
+  const user = getCurrentUser();
+  document.getElementById("welcome").textContent =
+    `Logged in as ${user}`;
 
-    <section class="grid" id="grid-section">
-      <!-- Cards populated by JS -->
-    </section>
-  </main>
-</div>
+  document.getElementById("logout").onclick = logout;
+</script>
 
-<!-- Mini Audio Player -->
-<div id="mini-player">
-  <div class="player-info">
-    <span id="player-song">No song playing</span>
-  </div>
-  <div class="player-controls">
-    <button id="play-pause">&#9658;</button>
-    <input type="range" id="player-progress" value="0" min="0" max="100">
-  </div>
-</div>
-
-<!-- Background particles -->
-<canvas id="particle-canvas"></canvas>
-
-<script src="app.js"></script>
 </body>
 </html>
